@@ -34,7 +34,7 @@ The following image demonstrates the application functionality:
 
 ![password generator demo](./Assets/03-javascript-homework-demo.png)
 
-![password generator demo](./Assets/Screen Shot 2021-08-18 at 10.33.20 PM.png)
+![password generator demo1](./Assets/Screen Shot 2021-08-18 at 10.33.20 PM.png)
 
-![password generator demo](./Assets/Screen Shot 2021-08-18 at 10.33.52 PM.png)
+![password generator demo2](./Assets/Screen Shot 2021-08-18 at 10.33.52 PM.png)
 
