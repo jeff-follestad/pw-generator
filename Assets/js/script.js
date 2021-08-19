@@ -8,14 +8,6 @@ var numbers = "0123456789";
 var special = "!@,#$%&*{}[]/\\+=";
 var chosenCharacters = "";
 
-// Write password to the #password input
-function enterpassword() {
-  var password = genratepassword;
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-}
-debugger;
-
 //write password function 
 function writePassword(){
   var password = generatePassword();
@@ -26,43 +18,49 @@ function writePassword(){
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-window.alert("welcome to Password Generator!")
-/** Generates a password that is filled in the textarea. */
-function generatePassword() {
+//generate password function gets called in writePassword function, and it should return the final password
+function generatePassword(){
+  //do random generation here and return the final password in the end
   var result = "";
-  // 8 is the length of the password, hardcoded for now.
-  for (var i = 0; i < 8; i++) {
-    result += getRandomLetter();
-
+  //ask the user how many characters they want
+  var length = prompt("How many characters in your random password? (between 8 and 128)");
+  if(isNaN(length)){
+    alert("You must input a number!");
+    return generatePassword()
   }
-  return result;
+  if(length<8 || length> 128){
+    alert("Please choose numbers between 8 - 128!");
+    return generatePassword()
+  }
+  //ask the user if they want to include upper, lower, num, special?
+  var hasUpper = confirm("Include upper case letters?");
+  var hasLower = confirm("Include lower case letters?");
+  var hasNumbers = confirm("Include numbers?");
+  var hasSpecial = confirm("Include special characters?");
+
+  if(!hasUpper&&!hasLower&&!hasNumbers&&!hasSpecial){
+    alert("You must at least choose 1 character type!");
+    return generatePassword()
+  }
+
+  if(hasUpper){
+    chosenCharacters += upper
+  }
+  if(hasLower){
+    chosenCharacters += lower
+  }
+
+  if(hasNumbers) {
+    chosenCharacters += numbers
+  }
+
+  if(hasSpecial) {
+    chosenCharacters += special
+  }
+
+for (var i = 0; i < length; i++) {
+  result += chosenCharacters.charAt(Math.floor(Math.random() * chosenCharacters.length));
 }
+return result;
 
-/** Uses getRandomInt(max) below to get a random character from the alphabet. */
-function getRandomLetter() {
-  let alphabet = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ!#$%&'()*+,-./:;<=>?@[]^_`{|}~".split('')
-  let randomIndex = getRandomInt(alphabet.length - 1)
-  let letterResult = alphabet[randomIndex]
-  console.log('Letter at index ' + randomIndex + ' is ' + letterResult);
-  return letterResult
 }
-
-/** Gets a random integer between 0 and max. */
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-//random characters
-
-//function getRandomLower() {
-  //return String.fromCharCode(math.floor(math.random() * 26) + 97);
-
-//function getRandomUpper() {
-  //return String.fromCharCode(math.floor(math.random() * 26) + 65);
-
-//function getRandomNumber() {
-  //return String.fromCharCode(math.floor(math.random() * 10) + 48);
-
-//function getRandomSymbol() {
-    //const symbols = "!#$%&'()*+,-./|:;<=>?@[]^_`{|}"; 
-    //return symbols[math.floor(math.random() + symbols.length)
